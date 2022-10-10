@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed;
     private Rigidbody enemyRb;
     private GameObject player;
+    public bool isDestroyed;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +23,11 @@ public class Enemy : MonoBehaviour
 
         enemyRb.AddForce(lookDirection * speed * Time.deltaTime);
 
-        if(transform.position.y < -10)
+        if (transform.position.y < -10)
         {
             Destroy(gameObject);
         }
+
+
     }
 }
