@@ -4,55 +4,49 @@ using UnityEngine;
 
 
 /// <summary>
-/// Need to find a way of spawning enemies once the current enemies have been deactivated,
-/// or to spawn them in waves as with one of the Unity Tutorials.
+/// enemy count needs to be populated from the object pooler of enemies, this should increase with each new wave.
 /// </summary>
 public class SpawnManager : MonoBehaviour
 {
-    //public static SpawnManager SharedInstance;
-    //[SerializeField] List<GameObject> enemyPrefab;
-    //public GameObject prefabToPool;
-    //public int enemyCount;
-
-    //public int waveNumber = 1;
-
     private float spawnRange = 13.0f;
+    public int waveNumber = 1;
+    public int enemyCount;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        //SpawnEnemyWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        SpawnEnemyWave();
-
-    }
-
-    void SpawnEnemyWave()
-    {
         GameObject enemy = ObjectPooler.SharedInstance.GetPooledPrefab("Basic Enemy");
-        if (enemy != null)
+        Debug.Log(enemy);
+        enemyCount = FindObjectsOfType<ObjectPooler>().Length;
+        //Debug.Log("No. of enemies = " + enemyCount);
+        if (enemyCount == waveNumber)
         {
-            enemy.transform.position = GenerateSpawnPosition();
-            enemy.SetActive(true);
+            waveNumber++;
+            SpawnEnemyWave(waveNumber);
         }
     }
 
-    //private int FindEnemy()
-    //{
-    //    for (int i = 0; i < enemyPrefab.Count; i++)
-    //    {
-    //        int index = enemyPrefab.Count;
-    //        if (!enemyPrefab[index].activeInHierarchy)
-    //        {
-    //            return i;
-    //        }
-    //    }
-    //    return 0;
-    //}
+    void SpawnEnemyWave(int enemiesToSpawn)
+    {
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            //Debug.Log("In the for loop, in spawn enemy wave method");
+            GameObject enemy = ObjectPooler.SharedInstance.GetPooledPrefab("Basic Enemy");
+            if (enemy != null)
+            {
+                //Debug.Log("Spawning an enemy");
+                enemy.transform.position = GenerateSpawnPosition();
+                enemy.SetActive(true);
+            }
+        }
+
+    }
 
     private Vector3 GenerateSpawnPosition()
     {
