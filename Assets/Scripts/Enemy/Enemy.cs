@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.y < -10)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
 

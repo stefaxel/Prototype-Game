@@ -2,53 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Need to find a way of spawning enemies once the current enemies have been deactivated,
+/// or to spawn them in waves as with one of the Unity Tutorials.
+/// </summary>
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> enemyPrefab;
+    //public static SpawnManager SharedInstance;
+    //[SerializeField] List<GameObject> enemyPrefab;
+    //public GameObject prefabToPool;
+    //public int enemyCount;
 
-    public int waveNumber = 1;
-    public int enemyCount = 0;
+    //public int waveNumber = 1;
+
     private float spawnRange = 13.0f;
-
     // Start is called before the first frame update
     void Start()
     {
-        SpawnEnemyWave();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyCount = enemyPrefab.Count;
-        if(enemyCount == 0)
-        {
-            waveNumber++;
-            SpawnEnemyWave();
-        }
+
+        SpawnEnemyWave();
+
     }
 
     void SpawnEnemyWave()
     {
-        for(int i = 0; i < FindEnemy(); i++)
+        GameObject enemy = ObjectPooler.SharedInstance.GetPooledPrefab("Basic Enemy");
+        if (enemy != null)
         {
-            Instantiate(enemyPrefab[FindEnemy()], GenerateSpawnPosition(), enemyPrefab[FindEnemy()].transform.rotation);
+            enemy.transform.position = GenerateSpawnPosition();
+            enemy.SetActive(true);
         }
     }
 
-    //Need to find a way of implementing object pooling for spawning enemies
-    
-    private int FindEnemy()
-    {
-        for(int i = 0; i < enemyPrefab.Count; i++)
-        {
-            int index = enemyPrefab.Count;
-            if (!enemyPrefab[index].activeInHierarchy)
-            {
-                return i;
-            }
-        }
-        return 0;
-    }
+    //private int FindEnemy()
+    //{
+    //    for (int i = 0; i < enemyPrefab.Count; i++)
+    //    {
+    //        int index = enemyPrefab.Count;
+    //        if (!enemyPrefab[index].activeInHierarchy)
+    //        {
+    //            return i;
+    //        }
+    //    }
+    //    return 0;
+    //}
 
     private Vector3 GenerateSpawnPosition()
     {
