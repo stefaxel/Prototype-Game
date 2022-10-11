@@ -15,16 +15,15 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SpawnEnemyWave();
+        SpawnEnemyWave(waveNumber);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject enemy = ObjectPooler.SharedInstance.GetPooledPrefab("Basic Enemy");
-        enemyCount = FindObjectsOfType<ObjectPooler>().Length;
+        enemyCount = FindObjectsOfType<Enemy>().Length;
         //Debug.Log("No. of enemies = " + enemyCount);
-        if (enemyCount == 1)
+        if (enemyCount == 0)
         {
             waveNumber++;
             SpawnEnemyWave(waveNumber);
@@ -51,7 +50,7 @@ public class SpawnManager : MonoBehaviour
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 0, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, 0.25f, spawnPosZ);
 
         return randomPos;
     }
