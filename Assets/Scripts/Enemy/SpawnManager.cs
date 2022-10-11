@@ -22,10 +22,9 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         GameObject enemy = ObjectPooler.SharedInstance.GetPooledPrefab("Basic Enemy");
-        Debug.Log(enemy);
         enemyCount = FindObjectsOfType<ObjectPooler>().Length;
         //Debug.Log("No. of enemies = " + enemyCount);
-        if (enemyCount == waveNumber)
+        if (enemyCount == 1)
         {
             waveNumber++;
             SpawnEnemyWave(waveNumber);
