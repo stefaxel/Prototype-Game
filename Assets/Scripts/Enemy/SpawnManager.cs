@@ -34,13 +34,20 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            //Debug.Log("In the for loop, in spawn enemy wave method");
-            GameObject enemy = ObjectPooler.SharedInstance.GetPooledPrefab("Basic Enemy");
-            if (enemy != null)
+            GameObject enemy1 = ObjectPooler.SharedInstance.GetPooledPrefab("Basic Enemy");
+            if (enemy1 != null)
             {
-                //Debug.Log("Spawning an enemy");
-                enemy.transform.position = GenerateSpawnPosition();
-                enemy.SetActive(true);
+                enemy1.transform.position = GenerateSpawnPosition();
+                enemy1.SetActive(true);
+            }
+        }
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            GameObject enemy2 = ObjectPooler.SharedInstance.GetPooledPrefab("Fast Enemy");
+            if (enemy2 != null)
+            {
+                enemy2.transform.position = GenerateSpawnPosition();
+                enemy2.SetActive(true);
             }
         }
 
