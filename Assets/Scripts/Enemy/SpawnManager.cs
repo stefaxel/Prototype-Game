@@ -11,6 +11,7 @@ public class SpawnManager : MonoBehaviour
     private float spawnRange = 13.0f;
     public int waveNumber = 1;
     public int enemyCount;
+    private GameObject[] allEnemy;
 
     // Start is called before the first frame update
     void Start()
