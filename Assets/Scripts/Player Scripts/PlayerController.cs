@@ -9,12 +9,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] float turnSmoothing;
 
+    [Header("Projectile")]
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject spawnBullet;
+
     private bool isJumping;
     private float horizontalInput;
     private float verticalInput;
     private float turnSmoothVelocity;
 
     private Rigidbody playerRb;
+
+    [Header("Camera")]
     [SerializeField] Transform cam;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +32,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         PlayerMovement();
+
+        FireProjectile();
     }
 
     private void PlayerMovement()
@@ -45,5 +53,14 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(moveDirection.normalized * speed * Time.deltaTime);
         }
 
+    }
+
+    private void FireProjectile()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("Left mouse button pressed");
+            spawnBullet = Instantiate(bullet, transform.position + Vector3.forward, Quaternion.identity);
+        }
     }
 }
