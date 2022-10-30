@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Projectile")]
     [SerializeField] GameObject bullet;
-    [SerializeField] GameObject spawnBullet;
+    [SerializeField] GameObject spawnBulletPoint;
 
     private bool isJumping;
     private float horizontalInput;
@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] Transform cam;
+    public Vector2 mousePos;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,10 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
 
+        mousePos.x += Input.GetAxis("Mouse X");
+        mousePos.y += Input.GetAxis("Mouse Y");
+        transform.localRotation = Quaternion.Euler(-mousePos.y, mousePos.x, 0);
+
         Vector3 movement = new Vector3(horizontalInput, 0.0f, verticalInput).normalized;
 
         if(movement.magnitude >= 0.1f)
@@ -57,10 +63,11 @@ public class PlayerController : MonoBehaviour
 
     private void FireProjectile()
     {
+        
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Debug.Log("Left mouse button pressed");
-            spawnBullet = Instantiate(bullet, transform.position + Vector3.forward, Quaternion.identity);
+            spawnBulletPoint = Instantiate(bullet, spawnBulletPoint.transform.position, Quaternion.identity);
         }
     }
 }
