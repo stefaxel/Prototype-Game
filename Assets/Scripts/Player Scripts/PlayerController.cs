@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     [Header("Projectile")]
     [SerializeField] GameObject bullet;
     [SerializeField] Transform orientation;
+    [SerializeField] Transform spawnBulletPoint;
 
-    
     private float horizontalInput;
     private float verticalInput;
     private float turnSmoothVelocity;
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement();
 
-        //FireProjectile();
+        FireProjectile();
     }
 
     private void PlayerMovement()
@@ -116,13 +116,13 @@ public class PlayerController : MonoBehaviour
         canJump = true;
     }
 
-    //private void FireProjectile()
-    //{
+    private void FireProjectile()
+    {
         
-    //    if (Input.GetKeyDown(KeyCode.Mouse0))
-    //    {
-    //        Debug.Log("Left mouse button pressed");
-    //        spawnBulletPoint = Instantiate(bullet, spawnBulletPoint.transform.position, Quaternion.identity);
-    //    }
-    //}
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("Left mouse button pressed");
+            GameObject currentBullet = Instantiate(bullet, spawnBulletPoint.position, Quaternion.identity);
+        }
+    }
 }
