@@ -32,10 +32,6 @@ public class PlayerController : MonoBehaviour
     private float turnSmoothVelocity;
 
     private Rigidbody playerRb;
-
-    [Header("Camera")]
-    //[SerializeField] Transform cam;
-    public Vector2 mousePos;
     
     // Start is called before the first frame update
     void Start()
@@ -59,8 +55,9 @@ public class PlayerController : MonoBehaviour
     {
         verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = Input.GetAxisRaw("Horizontal");
+        movement = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if(Input.GetKey(jumpKey) && canJump && grounded)
+        if (Input.GetKey(jumpKey) && canJump && grounded)
         {
             canJump = false;
 
@@ -68,12 +65,6 @@ public class PlayerController : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-
-        //mousePos.x += Input.GetAxis("Mouse X");
-        //mousePos.y += Input.GetAxis("Mouse Y");
-        //transform.localRotation = Quaternion.Euler(-mousePos.y, mousePos.x, 0);
-
-        movement = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (grounded)
         {
@@ -84,19 +75,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(movement.normalized * speed * airMultiplier * Time.deltaTime, ForceMode.Force);
         }
         
-
-        //movement = new Vector3(horizontalInput, 0.0f, verticalInput).normalized;
         MovementSpeedLimit();
-
-        //if(movement.magnitude >= 0.1f)
-        //{
-        //    float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-        //    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothing);
-        //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-        //    Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        //    playerRb.AddForce(moveDirection.normalized * speed * Time.deltaTime);
-        //}
 
     }
 
