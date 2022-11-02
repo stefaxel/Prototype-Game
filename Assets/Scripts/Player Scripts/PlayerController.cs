@@ -46,8 +46,11 @@ public class PlayerController : MonoBehaviour
     {
         GroundCheck();
 
-        PlayerMovement();
+        PlayerMovement(); 
+    }
 
+    private void Update()
+    {
         FireProjectile();
     }
 

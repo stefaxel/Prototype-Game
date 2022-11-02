@@ -32,9 +32,6 @@ public class ThirdPersonCamera : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CamraStyle.Basic);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CamraStyle.Combat);
-
         Vector3 viewDirection = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDirection.normalized;
 
@@ -56,6 +53,12 @@ public class ThirdPersonCamera : MonoBehaviour
 
             playerObject.forward = combatDirection.normalized;
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CamraStyle.Basic);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CamraStyle.Combat);
     }
 
     private void SwitchCameraStyle(CamraStyle newStyle)
