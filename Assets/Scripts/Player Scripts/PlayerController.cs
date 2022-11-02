@@ -118,11 +118,19 @@ public class PlayerController : MonoBehaviour
 
     private void FireProjectile()
     {
-        
+        RaycastHit hit;
+
+        Quaternion fireRotation = Quaternion.LookRotation(transform.forward);
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("Left mouse button pressed");
-            GameObject currentBullet = Instantiate(bullet, spawnBulletPoint.position, Quaternion.identity);
+            if (Physics.Raycast(transform.position, fireRotation * Vector3.forward, out hit, Mathf.Infinity))
+            {
+                Debug.Log("Left mouse button pressed");
+                GameObject currentBullet = Instantiate(bullet, spawnBulletPoint.position, fireRotation);
+                currentBullet.GetComponent<StandardBullet>().hitPoint = hit.point;
+            }
+            
         }
     }
 }
