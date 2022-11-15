@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Basic Enemy
   - Fast Enemy
+  - Enemy
   layers:
   - Default
   - TransparentFX

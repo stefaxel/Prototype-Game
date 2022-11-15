@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 2961716317819214236}
   - component: {fileID: 2961716317819214239}
   - component: {fileID: 14069013750613993}
+  - component: {fileID: 4143587599101008633}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Basic Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +109,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2961716317819214238}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -130,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 14069013750613993}
   speed: 500
+  roamPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
   roamPointRangeX: 58
   roamPointRangeZ: 8.3
   negRoamPointRangeX: 6.5
@@ -165,3 +168,16 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4143587599101008633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2961716317819214238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e5d7d0b024f56479560d8fd0274a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10

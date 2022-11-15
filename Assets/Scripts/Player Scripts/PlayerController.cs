@@ -129,7 +129,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, fireRotation * Vector3.forward, out hit, Mathf.Infinity))
             {
-                Debug.Log("Left mouse button pressed");
                 GameObject currentBullet = Instantiate(bullet, spawnBulletPoint.position, fireRotation);
                 currentBullet.GetComponent<StandardBullet>().hitPoint = hit.point;
             }
