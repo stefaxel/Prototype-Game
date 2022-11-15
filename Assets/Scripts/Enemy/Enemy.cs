@@ -14,11 +14,9 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Parameters")]
     [SerializeField] protected float speed;
     [SerializeField] protected Vector3 roamPoint;
-    [SerializeField] protected bool walkPointSet;
+    [SerializeField] protected bool roamPointSet = false;
     [SerializeField] protected float roamPointRangeX;
     [SerializeField] protected float roamPointRangeZ;
-    [SerializeField] protected float negRoamPointRangeX;
-    [SerializeField] protected float negRoamPointRangeZ;
     [SerializeField] protected LayerMask whatIsGround;
     [SerializeField] protected LayerMask whatIsPlayer;
 
@@ -65,34 +63,33 @@ public class Enemy : MonoBehaviour
 
     private void Patrolling()
     {
-        if (!walkPointSet)
+        if (!roamPointSet)
         {
+            Debug.Log("Getting a patrolling point");
             SearchPatrolPoint();
         }
-        if (walkPointSet)
+        if (roamPointSet)
         {
             enemy.SetDestination(roamPoint);
         }
 
-        Vector3 distanceToWalkPoint = transform.position - roamPoint;
+        Vector3 distanceToRoamPoint = transform.position - roamPoint;
 
-        if(distanceToWalkPoint.magnitude < 1f)
-        {
-            Debug.Log("Setting a new walk point");
-            walkPointSet = false;
-        }
+        if(distanceToRoamPoint.magnitude < 5f)
+            roamPointSet = false;
+        
     }
 
     private void SearchPatrolPoint()
     {
-        float randomX = Random.Range(-negRoamPointRangeX, roamPointRangeX);
-        float randomZ = Random.Range(-negRoamPointRangeZ, roamPointRangeZ);
+        float randomX = Random.Range(-roamPointRangeX, roamPointRangeX);
+        float randomZ = Random.Range(-roamPointRangeZ, roamPointRangeZ);
 
         roamPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         if(Physics.Raycast(roamPoint, -transform.up, 2f, whatIsGround))
         {
-            walkPointSet = true;
+            roamPointSet = true;
         }
     }
 

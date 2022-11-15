@@ -132,11 +132,11 @@ MonoBehaviour:
   enemy: {fileID: 14069013750613993}
   speed: 500
   roamPoint: {x: 0, y: 0, z: 0}
-  walkPointSet: 0
-  roamPointRangeX: 58
-  roamPointRangeZ: 8.3
-  negRoamPointRangeX: 6.5
-  negRoamPointRangeZ: 20
+  roamPointSet: 0
+  roamPointRangeX: 100
+  roamPointRangeZ: 100
+  negRoamPointRangeX: 100
+  negRoamPointRangeZ: 100
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -165,7 +165,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0.2
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4143587599101008633
