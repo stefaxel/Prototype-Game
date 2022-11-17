@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy References")]
-    protected static GameObject player;
+    protected static Transform player;
     protected static Rigidbody enemyRb;
     [SerializeField] protected NavMeshAgent enemy;
     NavMeshHit hit;
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     { 
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").transform;
         enemyRb = GetComponent<Rigidbody>();
         enemy = GetComponent<NavMeshAgent>();
     }
@@ -101,14 +101,14 @@ public class Enemy : MonoBehaviour
 
     private void ChasePlayer()
     {
-        enemy.SetDestination(player.transform.position);
+        enemy.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
         enemy.SetDestination(transform.position);
 
-        transform.LookAt(player.transform.position);
+        transform.LookAt(player);
 
         if (!alreadyAttacked)
         {

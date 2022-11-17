@@ -115,7 +115,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!114 &2961716317819214239
 MonoBehaviour:
@@ -135,17 +135,16 @@ MonoBehaviour:
   roamPointSet: 0
   roamPointRangeX: 100
   roamPointRangeZ: 100
-  negRoamPointRangeX: 100
-  negRoamPointRangeZ: 100
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  timeBetweenAttack: 0
-  sightRange: 6
-  attackRange: 4
+  timeBetweenAttack: 3
+  bullet: {fileID: 7253436066052173791, guid: 777aef1da40397f429ce9dae7250070a, type: 3}
+  sightRange: 10
+  attackRange: 7
 --- !u!195 &14069013750613993
 NavMeshAgent:
   m_ObjectHideFlags: 0
