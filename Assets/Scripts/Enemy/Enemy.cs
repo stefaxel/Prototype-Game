@@ -22,7 +22,8 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Attack")]
     [SerializeField] protected float timeBetweenAttack;
-    protected bool alreadyAttacked;
+    protected bool alreadyAttacked = false;
+    [SerializeField] protected GameObject bullet;
 
     [Header("Enemy States")]
     [SerializeField] protected float sightRange;
@@ -52,6 +53,11 @@ public class Enemy : MonoBehaviour
         if(playerInSight && !attackPlayer)
         {
             ChasePlayer();
+        }
+
+        if(playerInSight && attackPlayer)
+        {
+            AttackPlayer();
         }
         
         if(transform.position.y < -10)
@@ -96,5 +102,34 @@ public class Enemy : MonoBehaviour
     private void ChasePlayer()
     {
         enemy.SetDestination(player.transform.position);
+    }
+
+    private void AttackPlayer()
+    {
+        enemy.SetDestination(transform.position);
+
+        transform.LookAt(player.transform.position);
+
+        if (!alreadyAttacked)
+        {
+            Rigidbody bulletRb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttack);
+        }
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 }
