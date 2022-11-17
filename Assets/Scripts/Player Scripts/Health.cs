@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] float health;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] public int health;
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Debug.Log("Player needs to be respawned");
+        }
     }
 }

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1108309430346932524}
   - component: {fileID: 8964339493754041613}
   - component: {fileID: 4636562555207707186}
-  m_Layer: 0
+  - component: {fileID: 4014314919994445938}
+  m_Layer: 9
   m_Name: TestBullet
-  m_TagString: Untagged
+  m_TagString: Enemy Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,3 +115,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &4014314919994445938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253436066052173791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e73b530b4e70e4f8b9b439c272d207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 250000
+  bulletDamage: 5
+  hitPoint: {x: 0, y: 0, z: 0}

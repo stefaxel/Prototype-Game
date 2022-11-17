@@ -7,6 +7,7 @@ TagManager:
   - Basic Enemy
   - Fast Enemy
   - Enemy
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
-  - 
-  - 
+  - Enemy
+  - Enemy Bullet
+  - Bullet
   - 
   - 
   - 

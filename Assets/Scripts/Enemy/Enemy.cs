@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
         if (!alreadyAttacked)
         {
             Rigidbody bulletRb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttack);
