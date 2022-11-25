@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     protected static Rigidbody enemyRb;
     [SerializeField] protected NavMeshAgent enemy;
     NavMeshHit hit;
+    public Transform bulletHolder;
 
     [Header("Enemy Parameters")]
     [SerializeField] protected float speed;
@@ -112,7 +113,7 @@ public class Enemy : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            Rigidbody bulletRb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody bulletRb = Instantiate(bullet, bulletHolder.position, transform.rotation).GetComponent<Rigidbody>();
             //bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
 
             alreadyAttacked = true;

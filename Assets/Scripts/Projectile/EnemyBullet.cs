@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class EnemyBullet : StandardBullet
 {
-    // Start is called before the first frame update
+    private Rigidbody bulletRb;
+
+    private void Awake()
+    {
+        bulletRb = GetComponent<Rigidbody>();
+    }
     protected override void Start()
     {
-        base.Start();
+        bulletRb.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
     }
 
     protected override void OnCollisionEnter(Collision collision)
