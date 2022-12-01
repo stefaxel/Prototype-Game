@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     protected bool attackPlayer;
 
     // Start is called before the first frame update
-    void Awake()
+    virtual protected void Awake()
     { 
         player = GameObject.Find("Player").transform;
         enemyRb = GetComponent<Rigidbody>();
@@ -43,32 +43,37 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        AIChecks();
+    }
+
+    virtual protected void AIChecks()
+    {
         playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         attackPlayer = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if(!playerInSight && !attackPlayer)
+        if (!playerInSight && !attackPlayer)
         {
             Patrolling();
         }
 
-        if(playerInSight && !attackPlayer)
+        if (playerInSight && !attackPlayer)
         {
             ChasePlayer();
         }
 
-        if(playerInSight && attackPlayer)
+        if (playerInSight && attackPlayer)
         {
             AttackPlayer();
         }
-        
-        if(transform.position.y < -10)
+
+        if (transform.position.y < -10)
         {
             gameObject.SetActive(false);
         }
-
     }
 
-    private void Patrolling()
+    virtual protected void Patrolling()
     {
         if (!roamPointSet)
         {
@@ -87,7 +92,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void SearchPatrolPoint()
+    virtual protected void SearchPatrolPoint()
     {
         float randomX = Random.Range(-roamPointRangeX, roamPointRangeX);
         float randomZ = Random.Range(-roamPointRangeZ, roamPointRangeZ);
@@ -100,12 +105,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void ChasePlayer()
+    virtual protected void ChasePlayer()
     {
         enemy.SetDestination(player.position);
     }
 
-    private void AttackPlayer()
+    virtual protected void AttackPlayer()
     {
         enemy.SetDestination(transform.position);
 
@@ -114,19 +119,18 @@ public class Enemy : MonoBehaviour
         if (!alreadyAttacked)
         {
             Rigidbody bulletRb = Instantiate(bullet, bulletHolder.position, transform.rotation).GetComponent<Rigidbody>();
-            //bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttack);
         }
     }
 
-    private void ResetAttack()
+    virtual protected void ResetAttack()
     {
         alreadyAttacked = false;
     }
 
-    private void OnDrawGizmosSelected()
+    virtual protected void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
