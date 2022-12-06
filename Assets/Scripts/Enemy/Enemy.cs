@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float attackRange;
     protected bool playerInSight;
     protected bool attackPlayer;
+    protected Vector3 distanceToRoamPoint;
 
     // Start is called before the first frame update
     virtual protected void Awake()
@@ -85,7 +86,7 @@ public class Enemy : MonoBehaviour
             enemy.SetDestination(roamPoint);
         }
 
-        Vector3 distanceToRoamPoint = transform.position - roamPoint;
+        distanceToRoamPoint = transform.position - roamPoint;
 
         if(distanceToRoamPoint.magnitude < 5f)
             roamPointSet = false;
@@ -103,6 +104,7 @@ public class Enemy : MonoBehaviour
         {
             roamPointSet = true;
         }
+    
     }
 
     virtual protected void ChasePlayer()
