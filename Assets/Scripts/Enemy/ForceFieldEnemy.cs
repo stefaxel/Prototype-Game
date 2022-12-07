@@ -26,7 +26,6 @@ public class ForceFieldEnemy : Enemy
 
         if (!playerInSight && !attackPlayer)
         {
-            forceField.SetActive(false);
             Patrolling();
         }
 
@@ -52,7 +51,6 @@ public class ForceFieldEnemy : Enemy
     {
         if (!roamPointSet)
         {
-            Debug.Log("Getting a patrolling point");
             SearchPatrolPoint();
         }
         if (roamPointSet)
@@ -62,30 +60,26 @@ public class ForceFieldEnemy : Enemy
 
         distanceToRoamPoint = transform.position - roamPoint;
 
-        if(distanceToRoamPoint.magnitude < 5f)
-            roamPointSet = false;  
+        if(distanceToRoamPoint.magnitude < 1f)
+        {
+            StartCoroutine(WaitForNewPoint(1.5f));
+            roamPointSet = false;
+        }
     }
 
     private IEnumerator WaitForNewPoint(float waitTime)
     {
+        enemy.isStopped = true;
         forceField.SetActive(true);
         Debug.Log("waitng for 1.5 seconds");
         yield return new WaitForSeconds(waitTime);
         forceField.SetActive(false);
+        enemy.isStopped = false;
     }
 
     protected override void SearchPatrolPoint()
     {
-        float randomX = Random.Range(-roamPointRangeX, roamPointRangeX);
-        float randomZ = Random.Range(-roamPointRangeZ, roamPointRangeZ);
-
-        roamPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(roamPoint, -transform.up, 2f, whatIsGround))
-        {
-            StartCoroutine(WaitForNewPoint(1.5f));
-            roamPointSet = true;
-        }
+        base.SearchPatrolPoint();
     }
 
     protected override void ChasePlayer()

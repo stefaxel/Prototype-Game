@@ -1710,6 +1710,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 14069013750613993, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14069013750613993, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2961716317819214232, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
       propertyPath: m_RootOrder
       value: 1
