@@ -6,13 +6,11 @@ public class ForceFieldEnemy : Enemy
 {
     [Header("Enemy Force Field")]
     [SerializeField] protected GameObject forceField;
-
-    // Start is called before the first frame update
+    
     protected override void Awake()
     {
         base.Awake();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -23,6 +21,7 @@ public class ForceFieldEnemy : Enemy
     {
         playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         attackPlayer = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
 
         if (!playerInSight && !attackPlayer)
         {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3053007613402427762}
   - component: {fileID: 3053007613402427765}
   - component: {fileID: 3053007613402427766}
+  - component: {fileID: 2944004623400139772}
   - component: {fileID: 3053007613402427764}
   m_Layer: 8
   m_Name: Enemy Force Field
@@ -37,7 +38,7 @@ Transform:
   - {fileID: 3053007613446614998}
   - {fileID: 3053007614144424267}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3053007613402427760
 MeshFilter:
@@ -147,6 +148,20 @@ MonoBehaviour:
   bullet: {fileID: 3345232250536422717, guid: e3451bea5d8282b42af6d112ecb297d3, type: 3}
   sightRange: 8
   attackRange: 7
+  forceField: {fileID: 3053007613446614994}
+--- !u!114 &2944004623400139772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053007613402427763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e5d7d0b024f56479560d8fd0274a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!195 &3053007613402427764
 NavMeshAgent:
   m_ObjectHideFlags: 0
