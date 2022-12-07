@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 250000
-  bulletDamage: 0
-  bulletForceFieldDamage: 2
+  bulletDamage: 2
+  bulletForceFieldDamage: 1
   hitPoint: {x: 0, y: 0, z: 0}
 --- !u!54 &-3041662072004338247
 Rigidbody:

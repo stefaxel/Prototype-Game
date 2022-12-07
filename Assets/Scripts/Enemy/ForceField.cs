@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ForceField : MonoBehaviour
 {
-    [SerializeField]public int forceFieldPower = 10;
-    [SerializeField] public GameObject forceField;
+    [SerializeField] public int forceFieldPower = 10;
+    [SerializeField] protected GameObject forceField;
     public bool forceFieldActive = true;
 
     public void DamageForceField(int damage)
     {
         forceFieldPower -= damage;
 
-        if (forceFieldPower <= 0)
+        if (forceFieldPower < 0)
         {
-            forceFieldActive = false;
             forceField.SetActive(false);
+            forceFieldActive = false;
         }
     }
     

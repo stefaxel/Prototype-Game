@@ -6,6 +6,7 @@ public class ForceFieldEnemy : Enemy
 {
     [Header("Enemy Force Field")]
     [SerializeField] protected GameObject forceField;
+    [SerializeField] protected ForceField enemyFF;
     
     protected override void Awake()
     {
@@ -22,6 +23,7 @@ public class ForceFieldEnemy : Enemy
         playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         attackPlayer = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
+        
 
         if (!playerInSight && !attackPlayer)
         {
@@ -30,13 +32,19 @@ public class ForceFieldEnemy : Enemy
 
         if (playerInSight && !attackPlayer)
         {
-            forceField.SetActive(true);
+            if(enemyFF.forceFieldActive == true)
+            {
+                forceField.SetActive(true);
+            }
             ChasePlayer();
         }
 
         if (playerInSight && attackPlayer)
         {
-            forceField.SetActive(true);
+            if(enemyFF.forceFieldActive == true)
+            {
+                forceField.SetActive(true);
+            }
             AttackPlayer();
         }
 
