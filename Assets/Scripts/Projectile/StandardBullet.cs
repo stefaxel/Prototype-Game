@@ -20,9 +20,21 @@ public class StandardBullet : MonoBehaviour
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
+        ForceField col = gameObject.GetComponent<ForceField>(); 
+
         if (collision.gameObject.tag == "Force Field")
         {
-            collision.gameObject.GetComponent<ForceField>().DamageForceField(bulletForceFieldDamage);
+            if(collision == null)
+            {
+                Debug.Log("collision returned null");
+            }
+
+            if(col == null)
+            {
+                Debug.Log("gameObject.GetComponent returned null");
+            }
+            col.DamageForceField(bulletDamage);
+            //collision.gameObject.GetComponent<ForceField>().DamageForceField(bulletForceFieldDamage);
             Debug.Log("Force Field is taking damage: " + bulletForceFieldDamage);
             Destroy(this.gameObject);
         }
