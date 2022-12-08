@@ -149,7 +149,7 @@ MonoBehaviour:
   sightRange: 8
   attackRange: 7
   forceField: {fileID: 3053007613446614994}
-  enemyFF: {fileID: 75416164}
+  forceFieldEnemy: {fileID: 75416164}
 --- !u!114 &2944004623400139772
 MonoBehaviour:
   m_ObjectHideFlags: 0

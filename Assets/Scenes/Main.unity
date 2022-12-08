@@ -284,7 +284,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28850
+  m_Name: pb_Mesh28852
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1719,7 +1719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2961716317819214232, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.04
+      value: 48.07
       objectReference: {fileID: 0}
     - target: {fileID: 2961716317819214232, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1727,7 +1727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2961716317819214232, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.47
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 2961716317819214232, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1760,6 +1760,10 @@ PrefabInstance:
     - target: {fileID: 2961716317819214238, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961716317819214238, guid: d4aa0f4ba3056874fa06fa885cf7ff37, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1897,7 +1901,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360231370}
-  m_LocalRotation: {x: 0.22695544, y: 0.044566818, z: -0.010397179, w: 0.97282934}
+  m_LocalRotation: {x: 0.22695544, y: 0.044566803, z: -0.010397174, w: 0.97282934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12295,7 +12299,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28824
+  m_Name: pb_Mesh28826
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -31401,7 +31405,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008677448}
-  m_LocalRotation: {x: 0.20926955, y: 0.04474812, z: -0.009586966, w: 0.97678655}
+  m_LocalRotation: {x: 0.20926955, y: 0.044748075, z: -0.009586956, w: 0.97678655}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31567,11 +31571,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6025387496674464818, guid: 9e0fa5b146a2d20498115855ac3cb2c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.04456684
+      value: 0.044566777
       objectReference: {fileID: 0}
     - target: {fileID: 6025387496674464818, guid: 9e0fa5b146a2d20498115855ac3cb2c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.010397186
+      value: -0.010397171
       objectReference: {fileID: 0}
     - target: {fileID: 6025387496674464819, guid: 9e0fa5b146a2d20498115855ac3cb2c7, type: 3}
       propertyPath: player

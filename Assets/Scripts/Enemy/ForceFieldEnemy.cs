@@ -6,8 +6,8 @@ public class ForceFieldEnemy : Enemy
 {
     [Header("Enemy Force Field")]
     [SerializeField] protected GameObject forceField;
-    [SerializeField] protected ForceField enemyFF;
-    
+    [SerializeField] protected ForceField forceFieldEnemy;
+
     protected override void Awake()
     {
         base.Awake();
@@ -23,8 +23,6 @@ public class ForceFieldEnemy : Enemy
         playerInSight = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         attackPlayer = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        
-
         if (!playerInSight && !attackPlayer)
         {
             Patrolling();
@@ -32,18 +30,30 @@ public class ForceFieldEnemy : Enemy
 
         if (playerInSight && !attackPlayer)
         {
-            if(enemyFF.forceFieldActive == true)
+            if(forceFieldEnemy.forceFieldActive == true)
             {
+                gameObject.tag = "Force Field";
                 forceField.SetActive(true);
+            }
+            if(forceFieldEnemy.forceFieldActive == false)
+            {
+                gameObject.tag = "Enemy";
+                forceField.SetActive(false);
             }
             ChasePlayer();
         }
 
         if (playerInSight && attackPlayer)
         {
-            if(enemyFF.forceFieldActive == true)
+            if (forceFieldEnemy.forceFieldActive == true)
             {
+                gameObject.tag = "Force Field";
                 forceField.SetActive(true);
+            }
+            if (forceFieldEnemy.forceFieldActive == false)
+            {
+                gameObject.tag = "Enemy";
+                forceField.SetActive(false);
             }
             AttackPlayer();
         }
@@ -76,12 +86,26 @@ public class ForceFieldEnemy : Enemy
 
     private IEnumerator WaitForNewPoint(float waitTime)
     {
-        enemy.isStopped = true;
-        forceField.SetActive(true);
-        Debug.Log("waitng for 1.5 seconds");
-        yield return new WaitForSeconds(waitTime);
-        forceField.SetActive(false);
-        enemy.isStopped = false;
+        if (forceFieldEnemy.forceFieldActive == true)
+        {
+            gameObject.tag = "Force Field";
+            enemy.isStopped = true;
+            forceField.SetActive(true);
+            Debug.Log("waitng for 1.5 seconds");
+            yield return new WaitForSeconds(waitTime);
+            gameObject.tag = "Enemy";
+            forceField.SetActive(false);
+            enemy.isStopped = false;
+        }
+        if (forceFieldEnemy.forceFieldActive == false)
+        {
+            gameObject.tag = "Enemy";
+            enemy.isStopped = true;
+            Debug.Log("waitng for 1.5 seconds");
+            yield return new WaitForSeconds(waitTime);
+            enemy.isStopped = false;
+        }
+            
     }
 
     protected override void SearchPatrolPoint()
