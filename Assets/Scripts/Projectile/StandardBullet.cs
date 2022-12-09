@@ -10,34 +10,28 @@ public class StandardBullet : MonoBehaviour
     [SerializeField] protected int bulletForceFieldDamage;
     [HideInInspector]
     public Vector3 hitPoint;
+    ForceField forceField;
 
     // Start is called before the first frame update
     virtual protected void Start()
     {
         this.GetComponent<Rigidbody>().AddForce((hitPoint - this.transform.position).normalized * bulletSpeed * Time.deltaTime);
+        
     }
 
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
-        ForceField col = gameObject.GetComponent<ForceField>(); 
-
+        
         if (collision.gameObject.tag == "Force Field")
         {
-            if(collision == null)
-            {
-                Debug.Log("collision returned null");
-            }
+            forceField = GameObject.Find("Enemy Force Field").GetComponentInChildren<ForceField>();
 
-            if(col == null)
-            {
-                Debug.Log("gameObject.GetComponent returned null");
-            }
-            col.DamageForceField(bulletDamage);
-            //collision.gameObject.GetComponent<ForceField>().DamageForceField(bulletForceFieldDamage);
-            Debug.Log("Force Field is taking damage: " + bulletForceFieldDamage);
+            forceField.DamageForceField(bulletForceFieldDamage);
+            Debug.Log("Damaging force field with: " + bulletForceFieldDamage + " Force field power: " + forceField.forceFieldPower);
             Destroy(this.gameObject);
         }
+
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
